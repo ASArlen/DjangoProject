@@ -1,0 +1,151 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!--{% load static %}-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">-->
+<!--</head>-->
+<!--<body>-->
+
+
+<!--<nav class="navbar navbar-default">-->
+<!--  <div class="container-fluid">-->
+<!--    &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;-->
+<!--    <div class="navbar-header">-->
+<!--      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">-->
+<!--        <span class="sr-only">Toggle navigation</span>-->
+<!--        <span class="icon-bar"></span>-->
+<!--        <span class="icon-bar"></span>-->
+<!--        <span class="icon-bar"></span>-->
+<!--      </button>-->
+<!--      <a class="navbar-brand" href="#">PEGA Interface Management System</a>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
+<!--    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
+<!--      <ul class="nav navbar-nav">-->
+<!--{#        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>#}-->
+<!--        <li><a href="#">首页</a></li>-->
+<!--{#        <li class="dropdown">#}-->
+<!--{#          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}-->
+<!--{#          <ul class="dropdown-menu">#}-->
+<!--{#            <li><a href="#">Action</a></li>#}-->
+<!--{#            <li><a href="#">Another action</a></li>#}-->
+<!--{#            <li><a href="#">Something else here</a></li>#}-->
+<!--{#            <li role="separator" class="divider"></li>#}-->
+<!--{#            <li><a href="#">Separated link</a></li>#}-->
+<!--{#            <li role="separator" class="divider"></li>#}-->
+<!--{#            <li><a href="#">One more separated link</a></li>#}-->
+<!--{#          </ul>#}-->
+<!--{#        </li>#}-->
+<!--      </ul>-->
+<!--      <form class="navbar-form navbar-left">-->
+<!--        <div class="form-group">-->
+<!--          <input type="text" class="form-control" placeholder="Search">-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-default">Submit</button>-->
+<!--      </form>-->
+<!--      <ul class="nav navbar-nav navbar-right">-->
+<!--        <li><a href="#">登录</a></li>-->
+<!--        <li class="dropdown">-->
+<!--          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">邱琦 <span class="caret"></span></a>-->
+<!--          <ul class="dropdown-menu">-->
+<!--            <li><a href="#">个人资料</a></li>-->
+<!--            <li><a href="#">接口信息</a></li>-->
+<!--            <li><a href="#">接口查询</a></li>-->
+<!--            <li role="separator" class="divider">123</li>-->
+<!--            <li><a href="#">注销</a></li>-->
+<!--          </ul>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
+<!--  </div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--</nav>-->
+
+<!--{#<button type="button" class="btn btn-default navbar-btn">新建</button>#}-->
+<!--{##}-->
+<!--{#<div class="panel panel-default">#}-->
+<!--{#  &lt;!&ndash; Default panel contents &ndash;&gt;#}-->
+<!--{#  <div class="panel-heading">接口列表</div>#}-->
+<!--{#  <div class="panel-body">#}-->
+<!--{#    <p>...</p>#}-->
+<!--{#  </div>#}-->
+<!--{##}-->
+<!--{#  &lt;!&ndash; Table &ndash;&gt;#}-->
+<!--{#  <table class="table">#}-->
+<!--{#    ...#}-->
+<!--{#  </table>#}-->
+<!--{#</div>#}-->
+
+<!--<div>-->
+
+    <div class="container">
+        <div style="margin-bottom: 20px">
+<!--            <a class="btn btn-success" href="/interface/add/" target="_blank">-->
+            <a class="btn btn-success" href="/interface/add/" >
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                新建接口
+            </a>
+
+        </div>
+
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">
+
+              <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+              接口列表
+          </div>
+{#          <div class="panel-body">#}
+{#            <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>#}
+{#          </div>#}
+
+          <!-- Table -->
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Service ID</th>
+                <th>Interface Name</th>
+                <th>Application</th>
+                <th>Create Time</th>
+                <th>Operation</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for obj in interface_list %}
+
+              <tr>
+                <th>{{ obj.id }}</th>
+                <td>{{ obj.service_id }}</td>
+                <td>{{ obj.interface_name }}</td>
+                <td>{{ obj.application_id }}</td>
+                <td>{{ obj.create_time }}</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" href="/interface/{{ obj.id }}/update/">UPDATE</a>
+                    <a class="btn btn-danger btn-xs" href="/interface/delete/?nid={{ obj.id }}">DELETE</a>
+                </td>
+              </tr>
+            {% endfor %}
+{#              <tr>#}
+{#                <th scope="row">4</th>#}
+{#                <td>Larry</td>#}
+{#                <td>the Bird</td>#}
+{#                <td>@twitter</td>#}
+{#              </tr>#}
+            </tbody>
+          </table>
+        </div>
+        
+
+        <div>表格区</div>
+
+
+    </div>
+{% endblock %}
+
+

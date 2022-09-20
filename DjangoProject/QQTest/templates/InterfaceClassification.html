@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+    <div class="container">
+        <div style="margin-bottom: 20px">
+<!--            <a class="btn btn-success" href="/interface/add/" target="_blank">-->
+            <a class="btn btn-success" href="/interface/add/" >
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                接口分类
+            </a>
+
+        </div>
+    </div>
+
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        {{ field.label }}: {{ filed }}
+    {% endfor %}
+<!--    {{ form.interface_name.label }}:{{ form.interface_name }}-->
+<!--    {{ form.application_id.label }}:{{ form.application_id }}-->
+<!--    {{ form.interface_method_choice.label }}:{{ form.interface_method_choice }}-->
+
+</form>
+
+
+{% endblock %}
+
