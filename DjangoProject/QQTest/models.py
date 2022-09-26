@@ -57,7 +57,7 @@ class Interface(models.Model):
     # 写的application
     # 生成数列自动+ application_id
     #级联删除
-    application = models.ForeignKey(to="Application",to_field="id",on_delete=models.CASCADE)
+    application = models.ForeignKey(verbose_name="应用", to="Application",to_field="id",on_delete=models.CASCADE)
     # 置空
     # application = models.ForeignKey(to="Application", to_field="id", null=True,blank=True,on_delete=models.SET_NULL)
 

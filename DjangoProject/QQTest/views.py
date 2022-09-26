@@ -100,11 +100,19 @@ class InterfaceModelForm(forms.ModelForm):
             field.widget.attrs = {"class": "form-control"}
 
 def interface_classification(request):
-    form = InterfaceModelForm()
+    if request.method == "GET":
+        form = InterfaceModelForm()
+        return render(request,"InterfaceClassification.html",{"form":form})
 
     # interface_classification = Interface.objects.all()
-
-    return render(request,"InterfaceClassification.html",{"form":form})
+    # 用户post提交数据，数据校验
+    form = InterfaceModelForm(data=request.POST)
+    if form.is_valid():
+        print(form.cleaned_data)
+        form.save()
+        return redirect('/interface/list/')
+    else:
+        print(form.errors)
 
 
 
